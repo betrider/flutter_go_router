@@ -71,15 +71,99 @@ class AppRouter {
           ),
         ],
       ),
+      // 파라미터 사용 시
       GoRoute(
         path: "/login/:name",
         builder: (context, state) => LoginScreen(
           name: state.params["name"]!,
         ),
+      ),
+
+      // 다중페이지
+      //
+      // 최초 진입시 redirct 이후 재호출되면 builder 호출(builder 까지만 호출)
+      GoRoute(
+        path: "/",
+        builder: (context, state) => const LoginScreen(name: "125"),
+        // redirect: (context, state) {
+        //   return "/";
+        // },
+        routes: [
+          GoRoute(
+            path: "a",
+            builder: (context, state) => const PageA(),
+            routes: [
+              GoRoute(
+                path: "b",
+                builder: (context, state) => PageB(),
+                routes: [
+                  GoRoute(
+                    path: "c",
+                    builder: (context, state) => PageC(),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
       )
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),
   );
 
   static GoRouter get router => _router;
+}
+
+class PageA extends StatelessWidget {
+  const PageA({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text(
+          'PageA',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PageB extends StatelessWidget {
+  const PageB({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text(
+          'PageB',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PageC extends StatelessWidget {
+  const PageC({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text(
+          'PageC',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
 }

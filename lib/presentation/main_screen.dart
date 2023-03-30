@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../core/utils/constants.dart';
 
 class MainScreen extends StatelessWidget {
-
   final Widget screen;
 
   MainScreen({Key? key, required this.screen}) : super(key: key);
@@ -33,19 +32,32 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('main_screen'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.go('/login');
+            },
+            icon: const Icon(Icons.login),
+          ),
+          const SizedBox(width: 8,)
+        ],
+      ),
       body: screen,
       bottomNavigationBar: _buildBottomNavigation(context, tabs),
     );
   }
 }
 
-BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(mContext, List<NamedNavigationBarItemWidget>tabs) =>
+BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(
+        mContext, List<NamedNavigationBarItemWidget> tabs) =>
     BlocBuilder<NavigationCubit, NavigationState>(
       buildWhen: (previous, current) => previous.index != current.index,
       builder: (context, state) {
         return BottomNavigationBar(
           onTap: (value) {
-            if(state.index != value){
+            if (state.index != value) {
               context.read<NavigationCubit>().getNavBarItem(value);
               context.go(tabs[value].initialLocation);
             }
@@ -56,9 +68,7 @@ BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(mContext, L
           backgroundColor: Colors.black,
           unselectedItemColor: Colors.white,
           selectedIconTheme: IconThemeData(
-            size: ((IconTheme
-                .of(mContext)
-                .size)! * 1.3),
+            size: ((IconTheme.of(mContext).size)! * 1.3),
           ),
           items: tabs,
           currentIndex: state.index,

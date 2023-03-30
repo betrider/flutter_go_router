@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
       body: Center(
         child: InkWell(
-          onTap: () {
-            context.go('/home/details');
+          onTap: (){
+            context.go('/home');
           },
           child: const Text(
-            'Home',
+            'Login Screen',
             style: TextStyle(color: Colors.white),
           ),
         ),

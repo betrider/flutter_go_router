@@ -9,7 +9,9 @@ class Routes{
   static const profileNamedPage = '/profile';
   static const profileDetailsNamedPage = 'details';
   static const settingsNamedPage = '/settings';
+  static const settingsDetailsNamedPage = 'details';
   //static profileNamedPage([String? name]) => '/${name ?? ':profile'}';
+  static const loginNamedPage = '/login';
   static Widget errorWidget(BuildContext context, GoRouterState state) => const NotFoundScreen();
 
 

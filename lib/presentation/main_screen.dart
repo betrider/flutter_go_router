@@ -37,7 +37,7 @@ class MainScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              context.go('/login');
+              context.go('/login/123');
             },
             icon: const Icon(Icons.login),
           ),

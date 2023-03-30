@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:androidrouting/controller/navigation_cubit.dart';
 import 'package:androidrouting/presentation/home/home_details_screen.dart';
 import 'package:androidrouting/presentation/home/home_screen.dart';
@@ -74,12 +72,11 @@ class AppRouter {
         ],
       ),
       GoRoute(
-        path: Routes.loginNamedPage,
-        builder: (context, state) {
-          log(state.fullpath.toString());
-          return const LoginScreen();
-        },
-      ),
+        path: "/login/:name",
+        builder: (context, state) => LoginScreen(
+          name: state.params["name"]!,
+        ),
+      )
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),
   );

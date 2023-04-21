@@ -11,7 +11,19 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: InkWell(
           onTap: () {
-            context.go('/home/details');
+            // 1번 params 사용
+            // context.push('/home/details/1111');
+
+            // 1-1번 queryParams 사용
+            context.push('/home/details?title=1122&test=3333');
+
+            // 2번 queryParams 사용
+            // context.pushNamed('details', queryParams: {'title':'2222'});
+
+            // 3번 extra 사용
+            // context.push('/home/details', extra: {
+            //   'title': '3333'
+            // });
           },
           child: const Text(
             'Home',

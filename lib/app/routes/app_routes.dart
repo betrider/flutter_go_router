@@ -39,10 +39,45 @@ class AppRouter {
               child: HomeScreen(),
             ),
             routes: [
+              // 1번 params 사용
+              // GoRoute(
+              //   parentNavigatorKey: _rootNavigatorKey,
+              //   path: 'details/:title',
+              //   builder: (context, state) => HomeDetailsScreen(
+              //     title: state.params["title"]!,
+              //   ),
+              // ),
+
+              // 2번 queryParams 사용
               GoRoute(
-                path: Routes.homeDetailsNamedPage,
-                builder: (context, state) => const HomeDetailsScreen(),
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'details',
+                builder: (context, state) => HomeDetailsScreen(
+                  title: state.queryParams["title"]!,
+                ),
               ),
+
+              // 2번 queryParams 사용
+              // GoRoute(
+              //   parentNavigatorKey: _rootNavigatorKey,
+              //   name: 'details',
+              //   path: 'details1234',
+              //   builder: (context, state) => HomeDetailsScreen(
+              //     title: state.queryParams["title"]!,
+              //   ),
+              // ),
+
+              // 3번 extra 사용
+              // GoRoute(
+              //   parentNavigatorKey: _rootNavigatorKey,
+              //   path: 'details',
+              //   builder: (context, state) {
+              //     Map<String,String> result = state.extra as Map<String,String>; 
+              //     return HomeDetailsScreen(
+              //       title: result["title"]!,
+              //     );
+              //   },
+              // ),
             ],
           ),
           GoRoute(
